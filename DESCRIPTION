@@ -1,0 +1,10 @@
+Package: Rs3cmd
+Title: R Bindings for 's3cmd'
+Version: 0.0.1
+Maintainer: Whit Armstrong <armstrong.whit@gmail.com>
+Author: Whit Armstrong <armstrong.whit@gmail.com>, with contributions from Paulo Miguel Almeida Rodenas <paulo.ubuntu@gmail.com>
+Description: R package for interfacing with Amazon Simple Storage Service (see <http://aws.amazon.com/s3/> for more information).
+License: GPL-3
+SystemRequirements: s3cmd (Debian package s3cmd, Fedora package s3cmd)
+URL: http://github.com/armstrtw/Rs3cmd
+BugReports: http://github.com/armstrtw/Rs3cmd/issues
