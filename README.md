@@ -1,5 +1,5 @@
-Introduction
-============
+Info
+-------
 
  * Date: June 16, 2015
  * Authors: Whit Armstrong
@@ -11,13 +11,12 @@ Introduction
 Purpose
 -------
 
-AWS.tools is an R package for Amazon S3.
+Rs3cmd is an R package for reading/writing to Amazon S3.
 
 
 Usage
 -----
 
-A minimal example
 
 ```R
 library(Rs3cmd)
