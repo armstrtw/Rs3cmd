@@ -122,12 +122,12 @@ s3.put <- function(x,bucket,bucket.location="US",verbose=FALSE,debug=FALSE,encry
     res
 }
 
-s3.get <- function(bucket,bucket.location="US",verbose=FALSE,debug=FALSE,access.key='',secret.key='') {
+s3.get <- function(bucket,bucket.location="US",verbose=FALSE,debug=FALSE,access.key='',secret.key='',unserialize=TRUE) {
     .check.bucket(bucket)
-    x.serialized <- tempfile(fileext=".rds")
+    s3.file <- tempfile(fileext=".rds")
     s3.cmd <- paste("s3cmd get",
                     bucket,
-                    x.serialized,
+                    s3.file,
                     paste("--bucket-location",bucket.location),
                     "--no-progress",
                     ifelse(verbose,"--verbose",""),
@@ -136,8 +136,12 @@ s3.get <- function(bucket,bucket.location="US",verbose=FALSE,debug=FALSE,access.
                     ifelse(secret.key != '',paste("--secret_key",secret.key,sep = '='),"")
                     )
     res <- system(s3.cmd,intern=TRUE)
-    ans <- readRDS(x.serialized)
-    unlink(x.serialized)
+    if(unserialize) {
+        ans <- readRDS(s3.file)
+    } else {
+        ans <- readLines(s3.file)
+    }
+    unlink(s3.file)
     ans
 }
 

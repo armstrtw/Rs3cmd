@@ -40,7 +40,7 @@ s3.put.file(file, bucket, bucket.location="US", verbose=FALSE,
        debug=FALSE,encrypt=FALSE, access.key='', secret.key='')
 
 s3.get(bucket, bucket.location = "US", verbose = FALSE,
-       debug = FALSE, access.key='', secret.key='')
+       debug = FALSE, access.key='', secret.key='',unserialize=TRUE)
 
 s3.del(bucket, bucket.location = "US",
        human.readable.sizes = TRUE,list.md5 = FALSE,
@@ -73,7 +73,10 @@ s3.du(bucket, bucket.location = "US",
     details aboutencryption.}
   \item{echo}{if TRUE echo command before executing.}
   \item{access.key}{Specify an AWS access key to perform this operation. If not set, s3cmd will lookup for a file name .s3cfg in your home folder}
-  \item{secret.key}{Specify an AWS secret key to perform this operation. If not set, s3cmd will lookup for a file name .s3cfg in your home folder}
+  \item{secret.key}{Specify an AWS secret key to perform this
+      operation. If not set, s3cmd will lookup for a file name .s3cfg in
+      yourhome folder}
+  \item{unserialize}{whether the s3 object needs to be deserialized}
 }
 \value{
   Return value depends on command used.
@@ -86,3 +89,9 @@ s3.du(bucket, bucket.location = "US",
 \author{
   Whit Armstrong, with contributions from Paulo Miguel Almeida Rodenas
 }
+\examples{\dontrun{
+x <- rnorm(100)
+s3.put(x,"s3://prod/my.rands.rds")
+x.s3 <- s3.get("s3://prod/my.rands.rds")
+stopifnot(all.equal(x,x.s3))
+}}
